@@ -44,7 +44,6 @@ CREATE TABLE SpotifyClone.historico_de_reproducoes(
   CONSTRAINT PRIMARY KEY (id_usuario, id_cancao),
   FOREIGN KEY (id_cancao) REFERENCES cancao(id),
   FOREIGN KEY (id_usuario) REFERENCES usuario(id),
-  PRIMARY KEY (id_usuario, data_reproducao)
 );
 
 CREATE TABLE SpotifyClone.seguindo_artistas(
@@ -53,7 +52,6 @@ CREATE TABLE SpotifyClone.seguindo_artistas(
   CONSTRAINT PRIMARY KEY (id_usuario, id_artista),
   FOREIGN KEY (id_artista) REFERENCES artista(id),
   FOREIGN KEY (id_usuario) REFERENCES usuario(id),
-  PRIMARY KEY (id_artista, id_usuario)
 );
 
 INSERT INTO SpotifyClone.usuario
