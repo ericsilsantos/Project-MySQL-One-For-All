@@ -1,17 +1,16 @@
 DROP DATABASE IF EXISTS SpotifyClone;
-
 CREATE DATABASE SpotifyClone;
 
 CREATE TABLE SpotifyClone.plano(
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   nome VARCHAR(100) NOT NULL,
   valor DECIMAL(3, 2) NOT NULL
-);
+) engine = InnoDB;
 
 CREATE TABLE SpotifyClone.artista(
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   nome VARCHAR(100) NOT NULL
-);
+) engine = InnoDB;
 
 CREATE TABLE SpotifyClone.usuario(
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -20,7 +19,7 @@ CREATE TABLE SpotifyClone.usuario(
   data_assinatura DATE NOT NULL,
   plano_id INT NOT NULL,
   FOREIGN KEY (plano_id) REFERENCES plano(id)
-);
+) engine = InnoDB;
 
 CREATE TABLE SpotifyClone.album(
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -28,7 +27,7 @@ CREATE TABLE SpotifyClone.album(
   ano_lancamento YEAR NOT NULL,
   artista_id INT NOT NULL,
   FOREIGN KEY (artista_id) REFERENCES artista(id)
-);
+) engine = InnoDB;
 
 CREATE TABLE SpotifyClone.cancao(
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -36,7 +35,7 @@ CREATE TABLE SpotifyClone.cancao(
   duracao INT NOT NULL,
   album_id INT NOT NULL,
   FOREIGN KEY (album_id) REFERENCES album(id)
-);
+) engine = InnoDB;
 
 CREATE TABLE SpotifyClone.historico_de_reproducoes(
   id_usuario INT NOT NULL,
@@ -45,17 +44,18 @@ CREATE TABLE SpotifyClone.historico_de_reproducoes(
   FOREIGN KEY (id_cancao) REFERENCES cancao(id),
   FOREIGN KEY (id_usuario) REFERENCES usuario(id),
   PRIMARY KEY (id_usuario, data_reproducao)
-);
+) engine = InnoDB;
 
 CREATE TABLE SpotifyClone.seguindo_artistas(
   id_usuario INT NOT NULL,
   id_artista INT NOT NULL,
-  FOREIGN KEY (id_artista) REFERENCES artista(id),
-  FOREIGN KEY (id_usuario) REFERENCES usuario(id),
+  FOREIGN KEY (id_artista) REFERENCES SpotifyClone.artista(id),
+  FOREIGN KEY (id_usuario) REFERENCES SpotifyClone.usuario(id),
   PRIMARY KEY (id_artista, id_usuario)
-);
+) engine = InnoDB;
 
-INSERT INTO SpotifyClone.usuario(nome, idade, plano_id, data_assinatura)
+INSERT INTO SpotifyClone.usuario
+(nome, idade, plano_id, data_assinatura)
 VALUES
   ('Thati', 23, 1, '2019-10-20'),
   ('Cintia', 35, 2, '2017-12-30'),
