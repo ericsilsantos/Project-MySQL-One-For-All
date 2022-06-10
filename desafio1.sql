@@ -19,7 +19,7 @@ CREATE TABLE SpotifyClone.usuario(
   idade INT NOT NULL,
   data_assinatura DATE NOT NULL,
   plano_id INT NOT NULL,
-  FOREIGN KEY (plano_id) REFERENCES SpotifyClone.plano(id)
+  FOREIGN KEY (plano_id) REFERENCES plano(id)
 );
 
 CREATE TABLE SpotifyClone.album(
@@ -27,7 +27,7 @@ CREATE TABLE SpotifyClone.album(
   nome VARCHAR(100) NOT NULL,
   ano_lancamento YEAR NOT NULL,
   artista_id INT NOT NULL,
-  FOREIGN KEY (artista_id) REFERENCES SpotifyClone.artista(id)
+  FOREIGN KEY (artista_id) REFERENCES artista(id)
 );
 
 CREATE TABLE SpotifyClone.cancao(
@@ -35,28 +35,27 @@ CREATE TABLE SpotifyClone.cancao(
   nome VARCHAR(100) NOT NULL,
   duracao INT NOT NULL,
   album_id INT NOT NULL,
-  FOREIGN KEY (album_id) REFERENCES SpotifyClone.album(id)
+  FOREIGN KEY (album_id) REFERENCES album(id)
 );
 
 CREATE TABLE SpotifyClone.historico_de_reproducoes(
   id_usuario INT NOT NULL,
   id_cancao INT NOT NULL,
   data_reproducao DATETIME NOT NULL,
-  FOREIGN KEY (id_cancao) REFERENCES SpotifyClone.cancao(id),
-  FOREIGN KEY (id_usuario) REFERENCES SpotifyClone.usuario(id),
+  FOREIGN KEY (id_cancao) REFERENCES cancao(id),
+  FOREIGN KEY (id_usuario) REFERENCES usuario(id),
   PRIMARY KEY (id_usuario, data_reproducao)
 );
 
 CREATE TABLE SpotifyClone.seguindo_artistas(
   id_usuario INT NOT NULL,
   id_artista INT NOT NULL,
-  FOREIGN KEY (id_artista) REFERENCES SpotifyClone.artista(id),
-  FOREIGN KEY (id_usuario) REFERENCES SpotifyClone.usuario(id),
+  FOREIGN KEY (id_artista) REFERENCES artista(id),
+  FOREIGN KEY (id_usuario) REFERENCES usuario(id),
   PRIMARY KEY (id_artista, id_usuario)
 );
 
-INSERT INTO SpotifyClone.usuario
-(nome, idade, plano_id, data_assinatura)
+INSERT INTO SpotifyClone.usuario(nome, idade, plano_id, data_assinatura)
 VALUES
   ('Thati', 23, 1, '2019-10-20'),
   ('Cintia', 35, 2, '2017-12-30'),
