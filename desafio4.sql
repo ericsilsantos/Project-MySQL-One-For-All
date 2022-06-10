@@ -3,4 +3,4 @@ IF (MAX(YEAR(h.data_reproducao)) >= 2021, "Usuário ativo", "Usuário inativo") 
 FROM SpotifyClone.usuario AS u
 INNER JOIN SpotifyClone.historico_de_reproducoes AS h
 ON u.id = h.id
-GROUP BY u.name
+GROUP BY u.name;

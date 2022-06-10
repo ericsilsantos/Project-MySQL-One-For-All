@@ -6,4 +6,4 @@ INNER JOIN SpotifyClone.historico_de_reproducoes AS h
 ON u.id = h.id
 INNER JOIN SpotifyClone.cancoes AS c
 ON h.id = c.id
-GROUP BY u.name
+GROUP BY u.name;
